@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import { getUserFirstName } from './services/apiService';
 import './Dashboard.css';
 
 const fetchTasks = async (day) => {
@@ -14,6 +15,20 @@ const fetchTasks = async (day) => {
 const Dashboard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [firstName, setFirstName] = useState('');
+
+  useEffect(() => {
+    const fetchUserFirstName = async () => {
+      try {
+        const userFirstName = await getUserFirstName();
+        setFirstName(userFirstName);
+      } catch (error) {
+        console.error('Error fetching user first name', error);
+      }
+    };
+
+    fetchUserFirstName();
+  }, []);
 
   const openModal = async (day) => {
     const tasks = await fetchTasks(day);
@@ -27,7 +42,7 @@ const Dashboard = () => {
   };
 
   return (
-<div className="dashboard">
+    <div className="dashboard">
       <div className="sidebarD">
         <div className="avatar"></div>
         <div className='buttonCont'>
@@ -42,11 +57,11 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="header-container">
           <div className="header">
-            <div className="welcome-text">Welcome Back, User 1!</div>
+            <div className="welcome-text">Welcome Back, {firstName}!</div>
           </div>
           <div className="progress-container">
             <div className="tasks">
-              <div className='taskMark'></div>
+              <div className="taskMark"></div>
               <div className="task-count">20 Tasks</div>
               <div className="progress-bar">
                 <div className="progress"></div>
@@ -71,40 +86,40 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel="Tasks Modal"
-      style={{
-        overlay: {
-          backgroundColor: 'rgba(0, 0, 0, 0.75)',
-          zIndex: 1000,
-        },
-        content: {
-          zIndex: 1001,
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '50%',
-          padding: '20px',
-          borderRadius: '10px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        },
-      }}
-    >
-      <h2>Tasks for Today</h2>
-      <button onClick={closeModal}>Close</button>
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task.description}</li>
-        ))}
-      </ul>
-    </Modal>
-  </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Tasks Modal"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+          },
+          content: {
+            zIndex: 1001,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: '50%',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          },
+        }}
+      >
+        <h2>Tasks for Today</h2>
+        <button onClick={closeModal}>Close</button>
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index}>{task.description}</li>
+          ))}
+        </ul>
+      </Modal>
+    </div>
   );
 };
 

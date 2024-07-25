@@ -1,0 +1,3 @@
+zip,zip@gmail.com,pass,zee,b,123456789,2003-02-12,123 street street 
+z,z,z,z,z,1234567890,2003-12-12,515 this that
+z,z,z,z,z,z,2003-12-02,555 this that

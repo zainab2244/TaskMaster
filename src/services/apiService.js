@@ -22,4 +22,15 @@ export const sendData = async (data) => {
     console.error('Error sending data', error);
     throw error;
   }
+
+};
+
+export const getUserFirstName = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/user/firstname`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user first name', error);
+    throw error;
+  }
 };

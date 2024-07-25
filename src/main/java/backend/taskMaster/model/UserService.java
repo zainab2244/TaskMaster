@@ -48,10 +48,10 @@ public class UserService {
 
             System.out.print("Enter address: ");
             String address = scanner.nextLine();
+            
 
             Settings defaultSettings = new Settings(8, LocalTime.of(9, 0), LocalTime.of(17, 0), 15); // default settings
-            User newUser = new User(username, email, password, verificationCode, firstName, lastName,
-                    phoneNumber, dateOfBirth, address, defaultSettings);
+            User newUser = new User(username, email, password, verificationCode, firstName, lastName, phoneNumber, dateOfBirth, address, defaultSettings);
 
             userList.add(newUser);
 
