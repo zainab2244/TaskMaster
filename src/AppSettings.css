@@ -1,0 +1,211 @@
+/* Background page */
+body {
+    font-family: Roboto, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container to center content */
+.container {
+    display: flex;
+    height: 90vh;
+    width: 100vw;
+}
+
+/* Setting sidebar */
+.sidebar {
+    background-color: #396440;
+    padding: 20px;
+    color: #FFFFFF;
+    width: 403px; 
+    height: 100% !important; 
+    border-radius: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+    left: 5% !important;
+    top: 10% !important;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar h3 img {
+    margin-right: 10px;
+}
+
+.sidebar .separator {
+    width: 100%;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin: 20px 0;
+}
+
+.sidebar .menu-button {
+    background-color: #396440;
+    border: 2px solid #FFFFFF;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100% !important;
+}
+
+.sidebar .menu-button.active {
+    background-color: #CC9FA6;
+}
+
+.sidebar .logout-button {
+    margin-top: auto;
+}
+
+/* Main content styling */
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - 360px);
+    height: 101% !important;
+    background-color: #CC9FA6 !important;
+    padding: 20px;
+    border-radius: 40px;
+    margin: 20px;
+}
+
+.main h3 {
+    display: flex;
+    align-items: center;
+}
+
+.main .settings-group {
+    top: 10%;
+    background-color: #8d9e82;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.main .settings-group h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.main .settings-group .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.main .settings-group .row label {
+    flex: 1;
+    text-align: left;
+    margin: 5px;
+}
+
+.main .settings-group .row div {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.main .switch-container span {
+    color: white;
+    margin: 0 40px;
+}
+
+.main .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 0 10px;
+}
+
+.main .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.main .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.main .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.main input:checked + .slider {
+    background-color: #396440;
+}
+
+.main input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.main .vertical-line {
+    border-left: 2px solid #000000;
+    height: 50px;
+    margin: 0 10px;
+}
+
+.main .time-setting {
+    display: flex;
+    align-items: center;
+}
+
+.time-setting .am-pm-button {
+    background-color: #396440;
+    border: 2px solid #FFFFFF;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.time-setting .am-pm-button.active {
+    background-color: #CC9FA6;
+}

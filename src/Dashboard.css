@@ -1,0 +1,245 @@
+.App {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.dashboard {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebarD {
+  height: 100%;
+  width: 80px;
+  background-color: #ececec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.buttonCont {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 100%;
+  margin-top: 300px;
+  height: 1000%;
+}
+
+.buttonD1 {
+  left: 15%;
+  width: 70%;
+  position: relative;
+  top: 0; /* Reset top position */
+  height: 50px; /* Adjust this value to make the button taller */
+  padding: 20px; /* Adjust this value to increase the padding and make the button taller */
+  background-color: #ffffff; /* Add some background color for better visibility */
+  color: white; /* Text color */
+  border: none; /* Remove borders */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 18px; /* Font size */
+  z-index: 10;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.buttonD1:hover {
+  background-color: #CC9FA6; /* Change background color on hover */
+}
+
+.header-container {
+  top: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.header {
+  top: 10%;
+  left: .7%;
+  width: 46%;
+  height: 81.5%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.welcome-text {
+  font-size: 55px;
+  font-weight: bold;
+  color: #396440;
+}
+
+.progress-container {
+  top: 9.5%;
+  height: 115%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* Adjust width as necessary */
+  position: relative;
+}
+
+.tasks {
+  top: 7%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  margin-left: 20px; /* Add some margin to separate from the header */
+  position: relative;
+}
+
+.task-count {
+  left: 20%;
+  font-size: 50px;
+  font-weight: bold;
+  position: relative;
+  color: #e78e9b;
+}
+
+.completion-text {
+  left: 20%;
+  color: #e78e9b;
+  font-size: 15px;
+  font-weight: bold;
+  position: relative;
+}
+
+.taskMark {
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+  background-color: #396440;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+
+.taskMark::before {
+  content: '✔'; /* Check mark character */
+}
+
+.progress-bar {
+  left: 20%;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 20px;
+  width: 75%;
+  position: relative;
+  margin: 10px 0;
+}
+
+.progress {
+  background-color: #396440;
+  border-radius: 10px;
+  height: 100%;
+  width: 60%;
+  position: absolute;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.content {
+  top: 20%;
+  left: 20%;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  height: 90%;
+}
+
+.task-list {
+  border-radius: 10px;
+  background-color: #fff;
+  top: -20.5%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 82%;
+  left: 12%;
+}
+
+.task {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  height: 89%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-container {
+  width: 47%;
+  height: 76.5%;
+  left: 50%;
+  top: 2.5%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.calendar-header {
+  font-size: 60px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  color: #396440;
+  text-align: center;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  background-color: #fff;
+}
+
+.day {
+  background-color: #cc9fa6;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  height: 0; /* Reset height */
+  padding-bottom: 85%; /* Maintain aspect ratio for square tiles */
+}

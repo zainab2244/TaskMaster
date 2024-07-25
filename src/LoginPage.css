@@ -1,0 +1,175 @@
+.blue-rectangle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #396440;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 0 20px 50px #396440; /* Add a blue drop shadow */
+    z-index: 1; /* Ensures the rectangle is in the background */
+  }
+  
+  .orange-rectangle {
+    top: 12%;
+    left: 6%;
+    width: 40%;
+    height: 75%;
+    background-color: #CC9FA6;
+    box-shadow: inset 10px 10px 10px #0000003a; /* Add an inner shadow on the top and left */
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stacks children elements vertically */
+    position: relative; /* Ensure relative positioning for absolute positioning */
+    z-index: 2; /* Ensures the rectangle is above the blue rectangle but still in the background */
+  }
+  .welcome{
+    top: -5%;
+    font-size: 50px;
+    font-weight: bold;
+    left: 1%;
+    position: relative;
+    color: #ffffff;
+  }
+  .sign-up {
+    margin: 0; /* Remove default margin */
+    color: white; /* Optional: Change text color to contrast with the background */
+    position: absolute; /* Position absolutely inside the orange rectangle */
+    top: 18%;
+    left: 50%; /* Align at horizontal center */
+    transform: translate(-50%, -50%); /* Center the heading perfectly */
+  }
+  .desc {
+    margin: 0; /* Remove default margin */
+    color: white; /* Optional: Change text color to contrast with the background */
+    position: absolute; /* Position absolutely inside the orange rectangle */
+    top: 22%;
+    left: 50%; /* Align at horizontal center */
+    transform: translate(-50%, -50%); /* Center the heading perfectly */
+    font-size: 15px;
+    text-wrap: wrap;
+  }
+  .user-input{
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 8px;
+    border: none;
+    top: 5%;
+    height: 10%;
+    width: 75%;
+    border-radius: 20px;
+    box-shadow: inset 5px 5px 5px #dbdbdbb4;
+    z-index: 3;
+    background-color: rgb(255, 255, 255); /* Ensure input background is white */
+    color: rgb(94, 94, 94); /* Ensure input text color is black */
+    font-weight: 500;
+    font-size: medium;
+    position: relative;
+  }
+  /* Target specific input elements by class */
+  .user-input::placeholder {
+    color: #acacac; /* Example color */
+    padding: 10px;
+  }
+  .user-input:focus{
+    outline-offset: 1px;
+    outline-color: #a57e84;
+  }
+  .reset-link {
+    top: 150%;
+    margin-top: 10px; /* Adds spacing above the link */
+    color: #396440; /* Sets the text color of the link */
+    text-decoration: none; /* Removes underline from the link */
+    font-size: 14px; /* Sets the font size of the link */
+    z-index: 3;
+    position: relative;
+    font-weight: 500;
+  }
+  
+  .reset-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+  }
+  .content {
+    position: relative;
+    z-index: 1; /* Ensures content is above the background */
+    color: white;
+    text-align: center;
+    margin-top: 20%;
+  }
+  .button {
+    left: -87%;
+    top: 50%;
+    display: block;
+    width: 250%;
+    height: 100%;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f0f0f0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button.clicked {
+    box-shadow: none; /* Remove shadow when clicked */
+  }
+  .OR{
+    padding: -10px;
+    position: relative;
+    top: 15%;
+    left: 40%;
+  }
+  .connectButton{
+    position: relative;
+    top: 3%;
+    width: 40%;
+    height: 5%;
+    border-radius: 50px;
+    border: none;
+  }
+  .loginbutton:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .loginbutton.clicked {
+    box-shadow: none; /* Remove shadow when clicked */
+  }
+  .signUp-link {
+    top: 300%;
+    margin-top: 10px; /* Adds spacing above the link */
+    color: #396440; /* Sets the text color of the link */
+    text-decoration: none; /* Removes underline from the link */
+    font-size: 14px; /* Sets the font size of the link */
+    z-index: 3;
+    position: relative;
+    font-weight: 500;
+  }
+  
+  .signUp-link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+  }
+  
+  .grey-rectangle {
+    position: fixed;
+    top: 50%;
+    left: 77.5%;
+    width: 23%;
+    height: 45%;
+    border-radius: 5%;
+    border:5px solid #c2c2c2;
+    background-color: #c2c2c2c7;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensures the circle is in the background */ 
+  }

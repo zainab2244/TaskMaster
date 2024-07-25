@@ -1,0 +1,27 @@
+body, html, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: brown;
+}
+h1{
+  color: beige;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+}
+p{
+  color: beige;
+  position: fixed;
+  top: 15%;
+  left: 5%;
+  text-wrap: wrap;
+}
+.content{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+}
