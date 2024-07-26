@@ -17,6 +17,11 @@ public class UserService {
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
     private List<User> userList = new ArrayList<>();
 
+    public UserService() {
+        // Load users from file when the service is initialized
+        this.userList = readUsersFromFile();
+    }
+
     public void createUser(Scanner scanner) {
         try {
             System.out.println("Welcome to TaskMaster, let's create an account!");
