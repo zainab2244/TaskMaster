@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -50,6 +51,18 @@ public class UserController {
     public ResponseEntity<String> createUser(@RequestBody User user) {
         userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+    }
+
+    @PostMapping("/verify-for-reset")
+    public ResponseEntity<User> verifyUserForReset(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String verificationCode = request.get("verificationCode");
+        User verifiedUser = userService.verifyUserForReset(email, verificationCode);
+        if (verifiedUser != null) {
+            return ResponseEntity.ok(verifiedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
 }

@@ -76,3 +76,18 @@ export const getHelloMessage = async () => {
     throw error;
   }
 };
+
+export const verifyUserForReset = async (email, verificationCode) => {
+  try {
+    const response = await axios.post(`${API_URL}/verify-for-reset`, { email, verificationCode });
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data)); // Store user information in localStorage
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('Error verifying user for reset', error);
+    return false;
+  }
+};

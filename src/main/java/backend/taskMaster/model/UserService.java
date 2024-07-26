@@ -263,6 +263,19 @@ public class UserService {
         saveUsersToFile();
     }
     
+    public User verifyUserForReset(String email, String verificationCode) {
+        List<User> users = readUsersFromFile();
+        for (User user : users) {
+            LOGGER.info("Checking user: " + user.getEmail());
+            if (user.getEmail().trim().equalsIgnoreCase(email.trim()) && user.getVerificationCode().trim().equals(verificationCode.trim())) {
+                LOGGER.info("User verified for reset: " + user.getEmail());
+                return user;
+            }
+        }
+        LOGGER.warning("User not verified for reset: " + email);
+        return null;
+    }
+    
 
     public List<User> getUsers() {
         return userList;
