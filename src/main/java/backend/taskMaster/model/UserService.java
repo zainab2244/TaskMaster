@@ -2,8 +2,6 @@ package backend.taskMaster.model;
 
 import java.time.Duration;
 import java.util.logging.Logger;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,9 +11,6 @@ import java.util.Scanner;
 import java.io.*;
 
 import org.springframework.stereotype.Service;
-
-import java.io.FileWriter;
-import java.io.IOException;
 
 @Service
 public class UserService {
@@ -251,6 +246,11 @@ public class UserService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addUser(User user) {
+        userList.add(user);
+        saveUsersToFile();
     }
 
     public List<User> getUsers() {

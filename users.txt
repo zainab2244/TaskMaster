@@ -1,3 +1,1 @@
-zip,zip@gmail.com,pass,zee,b,123456789,2003-02-12,123 street street 
-z,z,z,z,z,1234567890,2003-12-12,515 this that
-JDoe,johnDoe@mail.com,johnD,John,Doe,1234567890,2000-01-01,100 this street
+a,a@a.com,a,a,a,1234567890,2002-03-03,111 this

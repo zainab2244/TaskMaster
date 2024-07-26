@@ -69,3 +69,13 @@ export const loginUser = async (username, password) => {
     return false;
   }
 };
+
+export const createUser = async (user) => {
+  try {
+    const response = await axios.post(`${API_URL}/users`, user);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user', error);
+    throw error;
+  }
+};

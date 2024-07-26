@@ -1,99 +1,201 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUser } from './services/apiService';
 import './SignUpPage.css';
 
 const SignUp = () => {
-    const [buttonClicked, setButtonClicked] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    verificationCode: '',
+    verifyVerificationCode: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    dateOfBirth: '',
+    address: '',
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-    const handleMouseDown = () => {
-      setButtonClicked(true); // Set state to indicate button is being clicked
-    };
-  
-    const handleMouseUp = () => {
-      setButtonClicked(false); // Set state to indicate button click is released
+  const handleMouseDown = () => {
+    setButtonClicked(true);
+  };
+
+  const handleMouseUp = () => {
+    setButtonClicked(false);
+  };
+
+  const handleInputChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    event.target.setCustomValidity('');
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (formData.password !== formData.verifyVerificationCode) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    if (formData.verificationCode !== formData.verifyVerificationCode) {
+      setError('Verification codes do not match');
+      return;
+    }
+
+    const newUser = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      verificationCode: formData.verificationCode,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber,
+      dateOfBirth: formData.dateOfBirth, // Date of birth as string
+      address: formData.address,
+      settings: {
+        workHoursThreshold: 8,
+        startTime: '09:00',
+        endTime: '17:00',
+        breakDuration: 15,
+      },
     };
 
-    const handleSubmit = (event) => {
-      event.preventDefault(); // Prevent default form submission
-      // Add logic to handle form submission, e.g., validate inputs, send data to server
-      // For now, just log the submission
-      console.log('Form submitted!');
-    };
+    try {
+      await createUser(newUser);
+      navigate('/');
+    } catch (error) {
+      setError('An error occurred while creating the user');
+    }
+  };
 
-    const handleInputChange = (event) => {
-      // Reset custom validation message when input changes
-      event.target.setCustomValidity('');
-    };
-
-    return (
-      <>
-        <div className="blue-rectangle2">      
-          <h1 className='signup-header'>Create Account </h1>
-          <h2 className='signup-subheader'>Sign Up to Get Started </h2>
-        </div>
-        <div className="white-rectangle2"></div>
-        <div className="orange-rectangle2">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="First Name"
-              className="user-input2"
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="user-input2"
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Student Email"
-              className="user-input2"
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="user-input2"
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Verify Password"
-              className="user-input2"
-              onChange={handleInputChange}
-              required
-            />
-            <div className="button-container2">
-              <Link to="/">
-                <button
-                  className={`button2 ${buttonClicked ? 'clicked' : ''}`}
-                  onMouseDown={handleMouseDown}
-                  onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp}
-                >
-                  Back
-                </button>
-              </Link>
+  return (
+    <>
+      <div className="blue-rectangle2">      
+        <h1 className='signup-header'>Create Account </h1>
+        <h2 className='signup-subheader'>Sign Up to Get Started </h2>
+      </div>
+      <div className="white-rectangle2"></div>
+      <div className="orange-rectangle2">
+        <form onSubmit={handleSubmit}>
+          {error && <p className="error">{error}</p>}
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            className="user-input2"
+            value={formData.username}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="user-input2"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="user-input2"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="verificationCode"
+            placeholder="Verification Code"
+            className="user-input2"
+            value={formData.verificationCode}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="verifyVerificationCode"
+            placeholder="Re-Enter Verification Code"
+            className="user-input2"
+            value={formData.verifyVerificationCode}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            className="user-input2"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            className="user-input2"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            className="user-input2"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="dateOfBirth"
+            placeholder="Birth Date (YYYY-MM-DD)"
+            className="user-input2"
+            value={formData.dateOfBirth}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            className="user-input2"
+            value={formData.address}
+            onChange={handleInputChange}
+            required
+          />
+          <div className="button-container2">
+            <Link to="/">
               <button
-                type="submit"
                 className={`button2 ${buttonClicked ? 'clicked' : ''}`}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
               >
-                Submit
+                Back
               </button>
-            </div>
-          </form>
-        </div>
-      </>
-    );
+            </Link>
+            <button
+              type="submit"
+              className={`button2 ${buttonClicked ? 'clicked' : ''}`}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
+  );
 };
 
 export default SignUp;
