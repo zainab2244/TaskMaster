@@ -1,0 +1,121 @@
+:root {
+    --green-color: #396440;
+    --pink-color: #CC9FA6;
+    --white-color: white;
+    --grey-color: #D3D3D3;
+    --lightgreen-color: #8D9E82;
+  }
+  
+  .calendar-container {
+    top: .5%;
+    left: 25%;
+    width: 50%;
+    height: 81.5% !important;
+    max-width: 90vw;
+    margin: 2vh auto;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 4vw;
+    background-color: var(--green-color);
+    color: var(--white-color);
+    position: relative;
+  }
+  
+  .calendar-header h2 {
+    margin: 0;
+    font-size: 3vw;
+    position: relative;
+  }
+  
+  .calendar-navigation {
+    display: flex;
+    gap: 1vw;
+    position: relative;
+  }
+  
+  .calendar-navigation button {
+    left: -15%;
+    background-color: var(--pink-color);
+    border: none;
+    padding: 1% 10%;
+    cursor: pointer;
+    color: var(--white-color);
+    border-radius: 1vw;
+    font-size: 25px;
+    position: relative;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    position: relative;
+  }
+  
+  .calendar-grid .day-box {
+    width: 100%;
+    background-color: var(--lightgreen-color);
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--green-color);
+    position: relative;
+  }
+  
+  .calendar-grid .date-box {
+    width: 100%;
+    height: 7.8vh;
+    background-color: var(--grey-color);
+    text-align: left;
+    vertical-align: top;
+    font-size: 2vw;
+    position: relative;
+  }
+  
+  .calendar-grid .date-box span {
+    position: absolute;
+    top: 0.5vh;
+    left: 0.5vw;
+    font-size: 20px;
+  }
+  
+  .calendar-grid .current-date {
+    background-color: var(--pink-color);
+    color: var(--white-color);
+    position: relative;
+  }
+  
+  .addTask-button {
+    position: fixed;
+    bottom: 7.5vh;
+    left: 89.5%;
+    background-color: var(--green-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 50%;
+    width: 3.55vw;
+    height: 3.5vw;
+    font-size: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .addTask-button:hover {
+    background-color: var(--lightgreen-color);
+    color: var(--white-color);
+    position: relative;
+  }
+  

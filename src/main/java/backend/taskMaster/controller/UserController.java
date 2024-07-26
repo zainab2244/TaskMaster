@@ -36,4 +36,14 @@ public class UserController {
         }
     }
 
+    @GetMapping("/user/data")
+    public User getUserData(@RequestParam String username) {
+        return userService.findUserByUsername(username);
+    }
+
+    @PutMapping("/user/data")
+    public void updateUserData(@RequestBody User updatedUser) {
+        userService.updateUser(updatedUser);
+    }
+
 }

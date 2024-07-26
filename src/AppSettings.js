@@ -86,7 +86,7 @@ const UserSettings = () => {
                 </div>
                 <div className="settings-group">
                     <h4>Hours Settings</h4>
-                    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
+                    {['Work Hours'].map(day => (
                         <div className="row" key={day}>
                             <label>{day}</label>
                             <div className="time-setting">

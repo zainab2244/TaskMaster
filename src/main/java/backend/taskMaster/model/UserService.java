@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.*;
 
 import org.springframework.stereotype.Service;
 
@@ -223,6 +224,34 @@ public class UserService {
     }
     
     
+    public User findUserByUsername(String username) {
+        return userList.stream()
+                .filter(user -> user.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void updateUser(User updatedUser) {
+        for (int i = 0; i < userList.size(); i++) {
+            User user = userList.get(i);
+            if (user.getUsername().equals(updatedUser.getUsername())) {
+                userList.set(i, updatedUser);
+                saveUsersToFile();
+                return;
+            }
+        }
+    }
+
+    private void saveUsersToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"))) {
+            for (User user : userList) {
+                writer.write(user.toCSV());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<User> getUsers() {
         return userList;

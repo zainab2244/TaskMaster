@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { getUserFirstNames } from './services/apiService';
 import './Dashboard.css';
+import Calendar from './Calendar';
 
 const fetchTasks = async (day) => {
   const response = await fetch(`/tasks/2024-06-${String(day).padStart(2, '0')}`);
@@ -23,7 +24,6 @@ const Dashboard = () => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
 
   const openModal = async (day) => {
     const tasks = await fetchTasks(day);
@@ -67,53 +67,10 @@ const Dashboard = () => {
         </div>
         <div className="content">
           <div className="task-list">
-            <div className="task"></div>
           </div>
         </div>
-        <div className="calendar-container">
-          <div className="calendar-header">June</div>
-          <div className="calendar">
-            {Array.from({ length: 30 }, (_, i) => (
-              <div key={i} className="day" onClick={() => openModal(i + 1)}>
-                {i + 1}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Calendar />
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Tasks Modal"
-        style={{
-          overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            zIndex: 1000,
-          },
-          content: {
-            zIndex: 1001,
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            width: '50%',
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          },
-        }}
-      >
-        <h2>Tasks for Today</h2>
-        <button onClick={closeModal}>Close</button>
-        <ul>
-          {tasks.map((task, index) => (
-            <li key={index}>{task.description}</li>
-          ))}
-        </ul>
-      </Modal>
     </div>
   );
 };
