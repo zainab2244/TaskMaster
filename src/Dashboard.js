@@ -15,22 +15,15 @@ const fetchTasks = async (day) => {
 const Dashboard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [firstName, setFirstName] = useState('');
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchUserFirstNames = async () => {
-      try {
-        const userFirstNames = await getUserFirstNames();
-        if (userFirstNames.length > 0) {
-          setFirstName(userFirstNames[0]);
-        }
-      } catch (error) {
-        console.error('Error fetching user first names', error);
-      }
-    };
-
-    fetchUserFirstNames();
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
+
 
   const openModal = async (day) => {
     const tasks = await fetchTasks(day);
@@ -59,7 +52,7 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="header-container">
           <div className="header">
-            <div className="welcome-text">Welcome Back, {firstName}!</div>
+            <div className="welcome-text">Welcome Back, {user ? user.firstName : 'User'}!</div>
           </div>
           <div className="progress-container">
             <div className="tasks">

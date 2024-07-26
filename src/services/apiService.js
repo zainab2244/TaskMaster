@@ -38,9 +38,14 @@ export const getUserFirstNames = async () => {
 export const loginUser = async (username, password) => {
   try {
     const response = await axios.post(`${API_URL}/login`, { username, password });
-    return response.data;
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data)); // Store user information in localStorage
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.error('Error logging in', error);
-    throw error;
+    return false;
   }
 };
