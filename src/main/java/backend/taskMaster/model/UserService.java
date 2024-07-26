@@ -1,13 +1,24 @@
 package backend.taskMaster.model;
 
 import java.time.Duration;
+import java.util.logging.Logger;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.stereotype.Service;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+@Service
 public class UserService {
+    private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
     private List<User> userList = new ArrayList<>();
 
     public void createUser(Scanner scanner) {
@@ -48,7 +59,6 @@ public class UserService {
 
             System.out.print("Enter address: ");
             String address = scanner.nextLine();
-            
 
             Settings defaultSettings = new Settings(8, LocalTime.of(9, 0), LocalTime.of(17, 0), 15); // default settings
             User newUser = new User(username, email, password, verificationCode, firstName, lastName, phoneNumber, dateOfBirth, address, defaultSettings);
@@ -62,11 +72,20 @@ public class UserService {
                 System.out.println(user);
             }
 
+            try {
+                FileWriter writer = new FileWriter("users.txt", true); // Adjusted path
+                writer.write(newUser.toCSV() + "\n");
+                writer.close();
+                System.out.println("User saved to users.txt");
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing to the file.");
+                e.printStackTrace();
+            }
+
         } catch (Exception e) {
             System.out.println("Error occurred while creating user: " + e.getMessage());
         }
     }
-
     public void loginUser(Scanner scanner) {
         try {
             System.out.println("Logging in...");
@@ -159,6 +178,51 @@ public class UserService {
             }
         }
     }
+
+    public List<User> readUsersFromFile() {
+        List<User> users = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                LOGGER.info("Reading line: " + line); // Add this line
+                String[] parts = line.split(",");
+                if (parts.length >= 8) {
+                    String username = parts[0].trim();
+                    String email = parts[1].trim();
+                    String password = parts[2].trim();
+                    String firstName = parts[3].trim();
+                    String lastName = parts[4].trim();
+                    String phoneNumber = parts[5].trim();
+                    LocalDate dateOfBirth = LocalDate.parse(parts[6].trim(), DateTimeFormatter.ISO_LOCAL_DATE);
+                    String address = parts[7].trim();
+                    Settings settings = new Settings(8, LocalTime.of(9, 0), LocalTime.of(17, 0), 15); // default settings
+    
+                    User user = new User(username, email, password, "", firstName, lastName, phoneNumber, dateOfBirth, address, settings);
+                    users.add(user);
+                    LOGGER.info("Parsed user: " + user); // Add this line
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    
+
+    public User verifyUser(String usernameOrEmail, String password) {
+        List<User> users = readUsersFromFile();
+        for (User user : users) {
+            LOGGER.info("Checking user: " + user.getUsername() + ", " + user.getEmail());
+            if ((user.getUsername().trim().equalsIgnoreCase(usernameOrEmail.trim()) || user.getEmail().trim().equalsIgnoreCase(usernameOrEmail.trim())) && user.getPassword().trim().equals(password.trim())) {
+                LOGGER.info("User verified: " + user.getUsername());
+                return user;
+            }
+        }
+        LOGGER.warning("User not verified: " + usernameOrEmail);
+        return null;
+    }
+    
+    
 
     public List<User> getUsers() {
         return userList;

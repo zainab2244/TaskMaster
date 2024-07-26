@@ -25,12 +25,22 @@ export const sendData = async (data) => {
 
 };
 
-export const getUserFirstName = async () => {
+export const getUserFirstNames = async () => {
   try {
-    const response = await axios.get(`${API_URL}/user/firstname`);
+    const response = await axios.get(`${API_URL}/user/firstnames`);
     return response.data;
   } catch (error) {
-    console.error('Error fetching user first name', error);
+    console.error('Error fetching user first names', error);
+    throw error;
+  }
+};
+
+export const loginUser = async (username, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, { username, password });
+    return response.data;
+  } catch (error) {
+    console.error('Error logging in', error);
     throw error;
   }
 };

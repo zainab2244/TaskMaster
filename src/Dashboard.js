@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import { getUserFirstName } from './services/apiService';
+import { getUserFirstNames } from './services/apiService';
 import './Dashboard.css';
 
 const fetchTasks = async (day) => {
@@ -18,16 +18,18 @@ const Dashboard = () => {
   const [firstName, setFirstName] = useState('');
 
   useEffect(() => {
-    const fetchUserFirstName = async () => {
+    const fetchUserFirstNames = async () => {
       try {
-        const userFirstName = await getUserFirstName();
-        setFirstName(userFirstName);
+        const userFirstNames = await getUserFirstNames();
+        if (userFirstNames.length > 0) {
+          setFirstName(userFirstNames[0]);
+        }
       } catch (error) {
-        console.error('Error fetching user first name', error);
+        console.error('Error fetching user first names', error);
       }
     };
 
-    fetchUserFirstName();
+    fetchUserFirstNames();
   }, []);
 
   const openModal = async (day) => {
