@@ -30,16 +30,13 @@ const SignUp = () => {
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(`${event.target.name}: ${event.target.value}`); // Log input changes
     event.target.setCustomValidity('');
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.password !== formData.verifyVerificationCode) {
-      setError('Passwords do not match');
-      return;
-    }
-
+    
     if (formData.verificationCode !== formData.verifyVerificationCode) {
       setError('Verification codes do not match');
       return;
@@ -53,7 +50,7 @@ const SignUp = () => {
       firstName: formData.firstName,
       lastName: formData.lastName,
       phoneNumber: formData.phoneNumber,
-      dateOfBirth: formData.dateOfBirth, // Date of birth as string
+      dateOfBirth: formData.dateOfBirth,
       address: formData.address,
       settings: {
         workHoursThreshold: 8,
@@ -62,6 +59,8 @@ const SignUp = () => {
         breakDuration: 15,
       },
     };
+
+    console.log('New user data:', newUser); // Log user data before submission
 
     try {
       await createUser(newUser);
@@ -145,8 +144,8 @@ const SignUp = () => {
             required
           />
           <input
-            type="text"
-            name="phoneNumber"
+            type="text"  
+            name="phoneNumber" 
             placeholder="Phone Number"
             className="user-input2"
             value={formData.phoneNumber}
@@ -154,9 +153,9 @@ const SignUp = () => {
             required
           />
           <input
-            type="text"
-            name="dateOfBirth"
-            placeholder="Birth Date (YYYY-MM-DD)"
+            type="date"
+            name="dateOfBirth" 
+            placeholder="Birth Date"
             className="user-input2"
             value={formData.dateOfBirth}
             onChange={handleInputChange}

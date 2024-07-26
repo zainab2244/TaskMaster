@@ -185,22 +185,29 @@ public class UserService {
         try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                LOGGER.info("Reading line: " + line); // Add this line
+                LOGGER.info("Reading line: " + line);
                 String[] parts = line.split(",");
-                if (parts.length >= 8) {
-                    String username = parts[0].trim();
-                    String email = parts[1].trim();
-                    String password = parts[2].trim();
-                    String firstName = parts[3].trim();
-                    String lastName = parts[4].trim();
-                    String phoneNumber = parts[5].trim();
-                    LocalDate dateOfBirth = LocalDate.parse(parts[6].trim(), DateTimeFormatter.ISO_LOCAL_DATE);
-                    String address = parts[7].trim();
-                    Settings settings = new Settings(8, LocalTime.of(9, 0), LocalTime.of(17, 0), 15); // default settings
-    
-                    User user = new User(username, email, password, "", firstName, lastName, phoneNumber, dateOfBirth, address, settings);
-                    users.add(user);
-                    LOGGER.info("Parsed user: " + user); // Add this line
+                if (parts.length >= 9) {
+                    try {
+                        String username = parts[0].trim();
+                        String email = parts[1].trim();
+                        String password = parts[2].trim();
+                        String verificationCode = parts[3].trim();
+                        String firstName = parts[4].trim();
+                        String lastName = parts[5].trim();
+                        String phoneNumber = parts[6].trim();
+                        LocalDate dateOfBirth = LocalDate.parse(parts[7].trim(), DateTimeFormatter.ISO_LOCAL_DATE);
+                        String address = parts[8].trim();
+                        Settings settings = new Settings(8, LocalTime.of(9, 0), LocalTime.of(17, 0), 15); // default settings
+
+                        User user = new User(username, email, password, verificationCode, firstName, lastName, phoneNumber, dateOfBirth, address, settings);
+                        users.add(user);
+                        LOGGER.info("Parsed user: " + user);
+                    } catch (Exception e) {
+                        LOGGER.warning("Failed to parse line: " + line + " - " + e.getMessage());
+                    }
+                } else {
+                    LOGGER.warning("Incorrect format for line: " + line);
                 }
             }
         } catch (IOException e) {
@@ -208,11 +215,9 @@ public class UserService {
         }
         return users;
     }
-    
 
     public User verifyUser(String usernameOrEmail, String password) {
-        List<User> users = readUsersFromFile();
-        for (User user : users) {
+        for (User user : userList) {
             LOGGER.info("Checking user: " + user.getUsername() + ", " + user.getEmail());
             if ((user.getUsername().trim().equalsIgnoreCase(usernameOrEmail.trim()) || user.getEmail().trim().equalsIgnoreCase(usernameOrEmail.trim())) && user.getPassword().trim().equals(password.trim())) {
                 LOGGER.info("User verified: " + user.getUsername());
@@ -222,8 +227,7 @@ public class UserService {
         LOGGER.warning("User not verified: " + usernameOrEmail);
         return null;
     }
-    
-    
+
     public User findUserByUsername(String username) {
         return userList.stream()
                 .filter(user -> user.getUsername().equals(username))
@@ -243,7 +247,7 @@ public class UserService {
     }
 
     private void saveUsersToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", false))) {
             for (User user : userList) {
                 writer.write(user.toCSV());
                 writer.newLine();
@@ -254,9 +258,11 @@ public class UserService {
     }
 
     public void addUser(User user) {
+        LOGGER.info("Adding user: " + user);
         userList.add(user);
         saveUsersToFile();
     }
+    
 
     public List<User> getUsers() {
         return userList;

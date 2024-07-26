@@ -89,7 +89,9 @@ public class User {
                 '}';
     }
 
+
     public String toCSV() {
-        return username + "," + email + "," + password + "," + firstName + "," + lastName + "," + phoneNumber + "," + dateOfBirth + "," + address;
+        return username + "," + email + "," + password + "," + verificationCode + "," + firstName + "," + lastName + "," + phoneNumber + "," + dateOfBirth + "," + address;
     }
+    
 }
