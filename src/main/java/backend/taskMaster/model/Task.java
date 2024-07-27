@@ -41,10 +41,11 @@ public class Task {
         this.percentage = percentage;
     }
 
-    // no-arg constructor
+    // No-arg constructor
     public Task() {
     }
 
+    // Getters and setters
     public String getName() {
         return name;
     }
@@ -101,11 +102,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public double getpercentage() {
+    public double getPercentage() {
         return percentage;
     }
 
-    public void setpercentage(double percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 
@@ -197,7 +198,7 @@ public class Task {
         return round(weight, 2);
     }
 
-    // helper
+    // Helper method to round double values
     private double round(double value, int places) {
         if (places < 0)
             throw new IllegalArgumentException();
@@ -241,31 +242,37 @@ public class Task {
     }
 
     public String toCSV() {
-        return name + "," +
-               description + "," +
-               category + "," +
-               location + "," +
-               dueDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-               estimatedTime + "," +
-               completed + "," +  // Include the completed field
-               weight + "," +  // Include the weight field
-               status + "," +  // Include the status field
-               percentage;
+        return String.join(",",
+                name,
+                description,
+                category,
+                location,
+                dueDate.toString(),
+                String.valueOf(estimatedTime),
+                String.valueOf(completed),
+                String.valueOf(weight),
+                status,
+                String.valueOf(percentage));
     }
 
+    // Method to create a Task object from a CSV string
     public static Task fromCSV(String csv) {
-        String[] parts = csv.split(",");
+        String[] fields = csv.split(",");
+        if (fields.length != 10) {
+            throw new IllegalArgumentException("Invalid CSV format for Task: " + csv);
+        }
+
         Task task = new Task();
-        task.setName(parts[0]);
-        task.setDescription(parts[1]);
-        task.setCategory(parts[2]);
-        task.setLocation(parts[3]);
-        task.setDueDate(LocalDate.parse(parts[4], DateTimeFormatter.ISO_LOCAL_DATE));
-        task.setEstimatedTime(Double.parseDouble(parts[5]));
-        task.setCompleted(Boolean.parseBoolean(parts[6]));  // Parse the completed field
-        task.setWeight(Double.parseDouble(parts[7]));  // Parse the weight field
-        task.setStatus(parts[8]);  // Parse the status field
-        task.setpercentage(Double.parseDouble(parts[9]));  // Parse the percentage field
+        task.setName(fields[0]);
+        task.setDescription(fields[1]);
+        task.setCategory(fields[2]);
+        task.setLocation(fields[3]);
+        task.setDueDate(LocalDate.parse(fields[4], DateTimeFormatter.ISO_DATE));
+        task.setEstimatedTime(Double.parseDouble(fields[5]));
+        task.setCompleted(Boolean.parseBoolean(fields[6]));
+        task.setWeight(Double.parseDouble(fields[7]));
+        task.setStatus(fields[8]);
+        task.setPercentage(Double.parseDouble(fields[9]));
         return task;
     }
 }

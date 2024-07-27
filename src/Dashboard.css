@@ -196,14 +196,24 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Updated task styles */
 .task {
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 10px;
-  height: 89%;
+  margin-bottom: 20px; /* Increased margin for spacing */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+  color: #333; /* Set text color to black */
+}
+
+.task h3 {
+  margin: 0 0 1px 0; /* Add margin for spacing */
+  color: #333; /* Set heading color to black */
+}
+
+.task p {
+  margin: 5px 0; /* Add margin for spacing */
+  color: #333; /* Set paragraph color to black */
 }
 
 /* Calendar Container */
@@ -274,7 +284,6 @@
 .date-box {
     width: 4vw;
     height: 4vh;
-
     background-color: var(--grey-color);
     text-align: left;
     vertical-align: top;

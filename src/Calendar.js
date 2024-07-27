@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Calendar.css';
 
-const Calendar = () => {
+const Calendar = ({ onTaskAdded }) => {
   const [currentMonth, setCurrentMonth] = useState(6);
   const [currentYear, setCurrentYear] = useState(2024);
   const [tasks, setTasks] = useState({});
@@ -86,52 +86,52 @@ const Calendar = () => {
     const taskPercentage = document.getElementById('taskPercentage').value;
 
     const task = {
-        name: taskName,
-        description: taskDescription,
-        category: taskCategory,
-        location: taskLocation,
-        dueDate: taskDate,
-        estimatedTime: parseFloat(taskHour) + parseFloat(taskMinute) / 60,
-        percentage: parseFloat(taskPercentage),
-        completed: false
+      name: taskName,
+      description: taskDescription,
+      category: taskCategory,
+      location: taskLocation,
+      dueDate: taskDate,
+      estimatedTime: parseFloat(taskHour) + parseFloat(taskMinute) / 60,
+      percentage: parseFloat(taskPercentage),
+      completed: false
     };
 
     console.log('Task to be added:', task);
 
     try {
-        const response = await fetch('http://localhost:8080/api/tasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        });
+      const response = await fetch('http://localhost:8080/api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+      });
 
-        if (response.ok) {
-            console.log('Task added successfully');
-            // Clear form fields
-            document.getElementById('taskName').value = '';
-            document.getElementById('taskDescription').value = '';
-            document.getElementById('taskCategory').value = '';
-            document.getElementById('taskLocation').value = '';
-            document.getElementById('taskDueDateDay').value = 'Day';
-            document.getElementById('taskDueDateMonth').value = 'Month';
-            document.getElementById('taskDueDateYear').value = 'Year';
-            document.getElementById('taskHour').value = 'Hour';
-            document.getElementById('taskMinute').value = 'Minute';
-            document.getElementById('taskWeight').value = '';
-            document.getElementById('taskStatus').value = '';
-            document.getElementById('taskPercentage').value = '';
-            closePopup();
-            updateCalendar();
-        } else {
-            console.error('Failed to add task');
-        }
+      if (response.ok) {
+        console.log('Task added successfully');
+        // Clear form fields
+        document.getElementById('taskName').value = '';
+        document.getElementById('taskDescription').value = '';
+        document.getElementById('taskCategory').value = '';
+        document.getElementById('taskLocation').value = '';
+        document.getElementById('taskDueDateDay').value = 'Day';
+        document.getElementById('taskDueDateMonth').value = 'Month';
+        document.getElementById('taskDueDateYear').value = 'Year';
+        document.getElementById('taskHour').value = 'Hour';
+        document.getElementById('taskMinute').value = 'Minute';
+        document.getElementById('taskWeight').value = '';
+        document.getElementById('taskStatus').value = '';
+        document.getElementById('taskPercentage').value = '';
+        closePopup();
+        updateCalendar();
+        onTaskAdded(); // Notify the parent component that a task has been added
+      } else {
+        console.error('Failed to add task');
+      }
     } catch (error) {
-        console.error('Error adding task:', error);
+      console.error('Error adding task:', error);
     }
-};
-
+  };
 
   const formatDateString = (dateString) => {
     const [day, month, year] = dateString.split('-');

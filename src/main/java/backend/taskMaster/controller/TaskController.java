@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class TaskController {
-
+    
     private final TaskService taskService;
 
     @Autowired
@@ -19,14 +19,19 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @GetMapping("/tasks")
+    public List<Task> getTasks() {
+        return taskService.getTasks();
+    }
+
+    @GetMapping("/tasks/count")
+    public int getTaskCount() {
+        return taskService.getTaskCount();
+    }
+
     @PostMapping("/tasks")
     public ResponseEntity<String> addTask(@RequestBody Task task) {
         taskService.addTask(task);
         return ResponseEntity.ok("Task added successfully");
-    }
-
-    @GetMapping("/tasks")
-    public List<Task> getTasks() {
-        return taskService.getTasks();
     }
 }
