@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080/api';
 
+
 export const getUserData = async () => {
   try {
     const response = await axios.get(`${API_URL}/user/data`);
@@ -30,6 +31,7 @@ export const sendData = async (data) => {
     console.error('Error sending data', error);
     throw error;
   }
+
 };
 
 export const getUserFirstNames = async () => {
@@ -67,12 +69,22 @@ export const createUser = async (user) => {
   }
 };
 
-export const getHelloMessage = async () => {
+export const addTask = async (task) => {
   try {
-    const response = await axios.get(`${API_URL}/hello`);
+    const response = await axios.post(`${API_URL}/tasks`, task);
     return response.data;
   } catch (error) {
-    console.error('Error fetching hello message', error);
+    console.error('Error adding task', error);
+    throw error;
+  }
+};
+
+export const getTasks = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/tasks`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching tasks', error);
     throw error;
   }
 };

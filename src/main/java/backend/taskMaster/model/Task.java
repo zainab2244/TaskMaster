@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Task {
     static final double BETA = 0.1;
 
     public Task(String name, String description, String category, String location,
-            LocalDate dueDate, double estimatedTime, double percentage) {
+                LocalDate dueDate, double estimatedTime, double percentage) {
         this.name = name;
         this.description = description;
         this.category = category;
@@ -40,7 +41,7 @@ public class Task {
         this.percentage = percentage;
     }
 
-    // no arg constructor
+    // no-arg constructor
     public Task() {
     }
 
@@ -129,7 +130,7 @@ public class Task {
     }
 
     public String canBeScheduled(List<Task> scheduledTasks, LocalDate dueDate, double estimatedTime,
-            Settings settings) {
+                                 Settings settings) {
         StringBuilder message = new StringBuilder();
         LocalDate currentDate = LocalDate.now();
 
@@ -237,5 +238,34 @@ public class Task {
                 "\ndueDate = " + dueDate +
                 "\nestimatedTime = " + estimatedTime +
                 "\ncompleted = " + completed;
+    }
+
+    public String toCSV() {
+        return name + "," +
+               description + "," +
+               category + "," +
+               location + "," +
+               dueDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
+               estimatedTime + "," +
+               completed + "," +  // Include the completed field
+               weight + "," +  // Include the weight field
+               status + "," +  // Include the status field
+               percentage;
+    }
+
+    public static Task fromCSV(String csv) {
+        String[] parts = csv.split(",");
+        Task task = new Task();
+        task.setName(parts[0]);
+        task.setDescription(parts[1]);
+        task.setCategory(parts[2]);
+        task.setLocation(parts[3]);
+        task.setDueDate(LocalDate.parse(parts[4], DateTimeFormatter.ISO_LOCAL_DATE));
+        task.setEstimatedTime(Double.parseDouble(parts[5]));
+        task.setCompleted(Boolean.parseBoolean(parts[6]));  // Parse the completed field
+        task.setWeight(Double.parseDouble(parts[7]));  // Parse the weight field
+        task.setStatus(parts[8]);  // Parse the status field
+        task.setpercentage(Double.parseDouble(parts[9]));  // Parse the percentage field
+        return task;
     }
 }

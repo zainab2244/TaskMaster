@@ -1,0 +1,2 @@
+Task1,Description1,Category1,Location1,2024-07-30,2.5,false,0.5,TO DO,75.0
+Task2,Description2,Category2,Location2,2024-08-15,1.0,true,0.3,DONE,100.0

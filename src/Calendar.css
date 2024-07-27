@@ -119,3 +119,58 @@
     position: relative;
   }
   
+  /* Adding Task Popup form */
+.popup-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 400px;
+  background-color: var(--white-color);
+  border-radius: 1vw;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.5);
+  padding: 2vh 2vw;
+  z-index: 10;
+}
+
+.popup-form h3 {
+  margin-top: 0;
+  color: var(--green-color);
+}
+
+.popup-form label {
+  display: block;
+  margin: 1vh 0 0.5vh 0;
+  color: var(--green-color);
+}
+
+.popup-form input,
+.popup-form select,
+.popup-form textarea {
+  width: 100%;
+  padding: 0.5vh;
+  margin-bottom: 1vh;
+  border: 1px solid var(--grey-color);
+  border-radius: 0.5vw;
+}
+
+.popup-form button {
+  width: 48%;
+  padding: 1vh;
+  margin-top: 1vh;
+  border: none;
+  border-radius: 0.5vw;
+  cursor: pointer;
+}
+
+.popup-form .cancel-button {
+  background-color: var(--green-color);
+  color: var(--white-color);
+}
+
+.popup-form .add-button {
+  background-color: var(--pink-color);
+  color: var(--white-color);
+}
