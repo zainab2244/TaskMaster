@@ -2,7 +2,6 @@ package backend.taskMaster.controller;
 
 import backend.taskMaster.model.Task;
 import backend.taskMaster.model.TaskService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +28,5 @@ public class TaskController {
     @GetMapping("/tasks")
     public List<Task> getTasks() {
         return taskService.getTasks();
-    }
-
-    @GetMapping("/task-count")
-    public ResponseEntity<Integer> getTaskCount() {
-        int count = taskService.getTaskCount();
-        return ResponseEntity.ok(count);
     }
 }
