@@ -232,16 +232,26 @@ html, body {
   flex-direction: column;
   justify-content: center; /* Center the content vertically */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  outline: 1px solid var(--pink-color); /* Add pink outline */
 }
 
 .task h3 {
   margin: 0 0 10px 0; /* Add margin for spacing */
-  color: #333; /* Set heading color to black */
+  color: var(--green-color); /* Set heading color to black */
+}
+
+.divider {
+  left: 40%;
+  width: 20%;
+  height: 5px;
+  background-color: var(--green-color); /* Light grey color for the divider */
+  margin: 10px 0; /* Space around the divider */
+  position: relative;
 }
 
 .task p {
   margin: 5px 0; /* Add margin for spacing */
-  color: #333; /* Set paragraph color to black */
+  color: var(--pink-color); /* Set paragraph color to black */
 }
 
 .task1 {

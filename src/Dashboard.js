@@ -11,7 +11,7 @@ const Dashboard = () => {
   useEffect(() => {
     const loadTasks = async () => {
       const tasks = await fetchTasks();
-      setTasks(tasks.slice(0, 4)); // Limit to 4 tasks
+      setTasks(tasks.slice(0, 10)); // Limit to 4 tasks
     };
 
     const loadTaskCount = async () => {
@@ -92,6 +92,7 @@ const Dashboard = () => {
             {tasks.map((task, index) => (
               <div key={index} className="task">
                 <h3>{task.name}</h3>
+                <div className="divider"></div>
                 <p className='task1'>{task.description}</p>
                 <p className='task1'>Due: {task.dueDate}</p>
                 <p className='task1'>Status: {task.status}</p>
