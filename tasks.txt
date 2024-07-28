@@ -1,5 +1,7 @@
 Task1,Description1,Category1,Location1,2024-07-30,2.5,false,0.5,TO DO,75.0
+f,f,f,f,2024-10-05,9.0,false,0.0,null,30.0
 Task2,Description2,Category2,Location2,2024-08-15,1.0,true,0.3,DONE,100.0
-d,d,d,d,2026-01-03,2.0,false,0.0,null,5.0
+New Task,New,Category1,Location4,2024-10-05,3.0,false,0.0,null,30.0
 Sample Task,This is a sample task,General,Home,2024-07-31,2.0,false,0.0,null,0.0
-this,is,a,task,2024-07-28,6.033333333333333,false,0.0,null,50.0
+t,t,t,t,2027-08-03,4.05,false,0.0,null,1.0
+d,d,d,d,2026-01-03,2.0,false,0.0,null,5.0

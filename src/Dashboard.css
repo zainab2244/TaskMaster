@@ -1,5 +1,9 @@
 /* src/components/Dashboard.css */
-
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling on the root level */
+}
 .App {
   display: flex;
   height: 100vh;
@@ -49,16 +53,26 @@
   height: 50px; /* Adjust this value to make the button taller */
   padding: 20px; /* Adjust this value to increase the padding and make the button taller */
   background-color: #ffffff; /* Add some background color for better visibility */
-  color: white; /* Text color */
+  color: rgb(136, 42, 42); /* Text color */
   border: none; /* Remove borders */
   border-radius: 5px; /* Add rounded corners */
-  font-size: 18px; /* Font size */
+  font-size: 10px; /* Font size */
   z-index: 10;
   cursor: pointer; /* Pointer cursor on hover */
+}
+.buttonD1 p{
+  color: #CC9FA6;
+  font-weight: bold;
+  position: relative;
+  top: -130%;
+  left: -72%;
 }
 
 .buttonD1:hover {
   background-color: #CC9FA6; /* Change background color on hover */
+}
+.buttonD1:hover p {
+  color: #ffffff; /* Change font color of the p element on hover */
 }
 
 .header-container {
@@ -72,8 +86,8 @@
 
 .header {
   top: 10%;
-  left: 0%;
-  width: 45.8%;
+  left: .4%;
+  width: 46.8%;
   height: 81.5%;
   background-color: #fff;
   border-radius: 10px;
@@ -171,6 +185,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+  overflow: none;
 }
 
 .content {
@@ -183,37 +198,59 @@
 }
 
 .task-list {
+  top: -20.5%;
   border-radius: 10px;
   background-color: #fff;
-  top: -20.5%;
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  height: 75.25%;
-  left: 12%;
+  height: 73.35%;
+  left: 11%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: none !important;
+  padding: 10px; /* Add padding for spacing */
+  z-index: 5;
 }
 
-/* Updated task styles */
+.task-list::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
 .task {
   background-color: #fff;
   border-radius: 10px;
   margin-bottom: 20px; /* Increased margin for spacing */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none; /* Remove shadow */
   position: relative;
   color: #333; /* Set text color to black */
+  padding: 20px; /* Added padding for inner content spacing */
+  min-height: 150px; /* Set a minimum height for consistency */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the content vertically */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .task h3 {
-  margin: 0 0 1px 0; /* Add margin for spacing */
+  margin: 0 0 10px 0; /* Add margin for spacing */
   color: #333; /* Set heading color to black */
 }
 
 .task p {
   margin: 5px 0; /* Add margin for spacing */
   color: #333; /* Set paragraph color to black */
+}
+
+.task1 {
+  left: 0%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 20px; /* Increased margin for spacing */
+  position: relative;
+  color: #333; /* Set text color to black */
 }
 
 /* Calendar Container */
