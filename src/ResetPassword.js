@@ -79,7 +79,7 @@ const ResetPassword = () => {
               Submit
             </button>
           </form>
-          <a className="forgot-password-link" href="/login">Back to Login</a>
+          <a className="forgot-password-link" href="/">Back to Login</a>
         </div>
       </div>
     </>

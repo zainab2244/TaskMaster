@@ -1,9 +1,5 @@
 /* src/components/Dashboard.css */
-html, body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden; /* Prevent scrolling on the root level */
-}
+
 .App {
   display: flex;
   height: 100vh;
@@ -15,6 +11,7 @@ html, body {
   display: flex;
   width: 100%;
   height: 100%;
+  overflow: hidden !important; /* Prevent scrolling */
 }
 
 .sidebarD {

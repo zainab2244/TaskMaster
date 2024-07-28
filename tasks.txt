@@ -1,7 +1,11 @@
-Task1,Description1,Category1,Location1,2024-07-30,2.5,false,0.5,TO DO,75.0
-f,f,f,f,2024-10-05,9.0,false,0.0,null,30.0
-Task2,Description2,Category2,Location2,2024-08-15,1.0,true,0.3,DONE,100.0
-New Task,New,Category1,Location4,2024-10-05,3.0,false,0.0,null,30.0
-Sample Task,This is a sample task,General,Home,2024-07-31,2.0,false,0.0,null,0.0
-t,t,t,t,2027-08-03,4.05,false,0.0,null,1.0
-d,d,d,d,2026-01-03,2.0,false,0.0,null,5.0
+Assignment 3,Assignment 3 for CP317,CP317,Laurier,2024-09-10,3.0,false,0.1,TO DO,80.0
+Assignment 4,Assignment 4 for ES295,ES295,Laurier,2024-11-20,7.0,false,0.1,TO DO,50.0
+Quiz 2,Quiz 2 for CP317,CP317,Laurier,2024-09-25,1.0,true,0.4,DONE,95.0
+Assignment 5,Assignment 5 for PS261,PS261,Laurier,2024-10-05,2.5,false,0.7,TO DO,85.0
+Assignment 6,Assignment 6 for MA122,MA122,Laurier,2024-12-01,8.0,false,0.1,TO DO,40.0
+Quiz 3,Quiz 3 for ES295,ES295,Laurier,2024-10-15,1.0,true,0.5,DONE,90.0
+Assignment 7,Assignment 7 for CP317,CP317,Laurier,2024-11-01,2.0,false,0.9,TO DO,70.0
+Assignment 8,Assignment 8 for PS261,PS261,Laurier,2024-12-15,6.0,false,0.1,TO DO,60.0
+Quiz 4,Quiz 4 for MA122,MA122,Laurier,2024-11-25,1.0,true,0.6,DONE,85.0
+Assignment 9,Assignment 9 for CP317,CP317,Laurier,2024-12-05,2.5,false,0.5,TO DO,75.0
+
