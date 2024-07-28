@@ -60,6 +60,7 @@ html, body {
   z-index: 10;
   cursor: pointer; /* Pointer cursor on hover */
 }
+
 .buttonD1 p{
   color: #CC9FA6;
   font-weight: bold;
@@ -71,8 +72,40 @@ html, body {
 .buttonD1:hover {
   background-color: #CC9FA6; /* Change background color on hover */
 }
+
 .buttonD1:hover p {
   color: #ffffff; /* Change font color of the p element on hover */
+}
+
+.buttonD2 {
+  left: 15%;
+  width: 70%;
+  position: relative;
+  top: 350%; /* Reset top position */
+  height: 50px; /* Adjust this value to make the button taller */
+  padding: 20px; /* Adjust this value to increase the padding and make the button taller */
+  background-color: var(--pink-color); /* Add some background color for better visibility */
+  color: rgb(136, 42, 42); /* Text color */
+  border: none; /* Remove borders */
+  border-radius: 5px; /* Add rounded corners */
+  font-size: 10px; /* Font size */
+  z-index: 10;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.buttonD2 p{
+  color: var(--white-color);
+  font-weight: bold;
+  position: relative;
+  top: -150%;
+  left: -10%;
+}
+
+.buttonD2:hover {
+  background-color: var(--white-color); /* Change background color on hover */
+}
+.buttonD2:hover p {
+  color: var(--pink-color); /* Change font color of the p element on hover */
 }
 
 .header-container {

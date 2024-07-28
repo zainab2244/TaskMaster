@@ -69,6 +69,9 @@ const Dashboard = () => {
           <Link to="/ProfileSettings">
             <button className="buttonD1"><p>Settings</p></button>
           </Link>
+          <Link to="/">
+            <button className="buttonD2"><p>Log Out</p></button>
+          </Link>
         </div>
       </div>
       <div className="main-content">
